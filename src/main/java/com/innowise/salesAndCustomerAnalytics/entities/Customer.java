@@ -1,7 +1,11 @@
-package main;
+package com.innowise.salesAndCustomerAnalytics.entities;
 
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
 public class Customer {
     private String customerId;
     private String name;
@@ -9,39 +13,4 @@ public class Customer {
     private LocalDateTime registeredAt;
     private int age;
     private String city;
-
-    public Customer(String customerId, String name, String email, LocalDateTime registeredAt,
-                    int age,
-                    String city) {
-        this.customerId = customerId;
-        this.name = name;
-        this.email = email;
-        this.registeredAt = registeredAt;
-        this.age = age;
-        this.city = city;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public LocalDateTime getRegisteredAt() {
-        return registeredAt;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getCity() {
-        return city;
-    }
 }

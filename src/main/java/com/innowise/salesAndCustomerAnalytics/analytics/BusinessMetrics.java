@@ -1,5 +1,9 @@
-package main.analytics;
+package com.innowise.salesAndCustomerAnalytics.analytics;
 
+import com.innowise.salesAndCustomerAnalytics.entities.Customer;
+import com.innowise.salesAndCustomerAnalytics.entities.Order;
+import com.innowise.salesAndCustomerAnalytics.entities.OrderItem;
+import com.innowise.salesAndCustomerAnalytics.entities.OrderStatus;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -8,10 +12,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
-import main.Customer;
-import main.Order;
-import main.OrderItem;
-import main.OrderStatus;
 
 public class BusinessMetrics {
     private BusinessMetrics() {}
