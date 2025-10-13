@@ -1,4 +1,4 @@
-package main.customLinkedList;
+package com.innowise.customLinkedList;
 
 public class CustomNode<T> {
     public T data;

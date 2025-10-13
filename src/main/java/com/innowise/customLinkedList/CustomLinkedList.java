@@ -1,4 +1,4 @@
-package main.customLinkedList;
+package com.innowise.customLinkedList;
 
 import java.util.NoSuchElementException;
 
