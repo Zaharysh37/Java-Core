@@ -1,11 +1,10 @@
-package test.analytics;
+package com.innowise.salesAndCustomerAnalytics.analytics;
 
-import main.Category;
-import main.Customer;
-import main.Order;
-import main.OrderItem;
-import main.OrderStatus;
-import main.analytics.BusinessMetrics;
+import com.innowise.salesAndCustomerAnalytics.entities.Category;
+import com.innowise.salesAndCustomerAnalytics.entities.Customer;
+import com.innowise.salesAndCustomerAnalytics.entities.Order;
+import com.innowise.salesAndCustomerAnalytics.entities.OrderItem;
+import com.innowise.salesAndCustomerAnalytics.entities.OrderStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
