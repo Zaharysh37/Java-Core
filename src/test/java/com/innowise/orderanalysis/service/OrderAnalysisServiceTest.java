@@ -1,10 +1,10 @@
-package com.innowise.salesAndCustomerAnalytics.analytics;
+package com.innowise.orderanalysis.service;
 
-import com.innowise.salesAndCustomerAnalytics.entities.Category;
-import com.innowise.salesAndCustomerAnalytics.entities.Customer;
-import com.innowise.salesAndCustomerAnalytics.entities.Order;
-import com.innowise.salesAndCustomerAnalytics.entities.OrderItem;
-import com.innowise.salesAndCustomerAnalytics.entities.OrderStatus;
+import com.innowise.orderanalysis.entity.Category;
+import com.innowise.orderanalysis.entity.Customer;
+import com.innowise.orderanalysis.entity.Order;
+import com.innowise.orderanalysis.entity.OrderItem;
+import com.innowise.orderanalysis.entity.OrderStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
-class BusinessMetricsTest {
+class OrderAnalysisServiceTest {
 
     private List<Order> orders;
     private Customer customer1;
@@ -86,7 +86,7 @@ class BusinessMetricsTest {
 
     @Test
     void testGetUniqueCities() {
-        List<String> cities = BusinessMetrics.getUniqueCities(orders);
+        List<String> cities = OrderAnalysisService.getUniqueCities(orders);
 
         assertEquals(2, cities.size());
         assertTrue(cities.contains("Москва"));
@@ -95,7 +95,7 @@ class BusinessMetricsTest {
 
     @Test
     void testGetUniqueCitiesWithEmptyList() {
-        List<String> cities = BusinessMetrics.getUniqueCities(Collections.emptyList());
+        List<String> cities = OrderAnalysisService.getUniqueCities(Collections.emptyList());
 
         assertNotNull(cities);
         assertTrue(cities.isEmpty());
@@ -103,7 +103,7 @@ class BusinessMetricsTest {
 
     @Test
     void testGetUniqueCitiesWithNull() {
-        List<String> cities = BusinessMetrics.getUniqueCities(null);
+        List<String> cities = OrderAnalysisService.getUniqueCities(null);
 
         assertNotNull(cities);
         assertTrue(cities.isEmpty());
@@ -111,7 +111,7 @@ class BusinessMetricsTest {
 
     @Test
     void testGetTotalIncomeForDeliveredOrders() {
-        Optional<Double> totalIncome = BusinessMetrics.getTotalIncomeForDeliveredOrders(orders);
+        Optional<Double> totalIncome = OrderAnalysisService.getTotalIncomeForDeliveredOrders(orders);
 
         assertTrue(totalIncome.isPresent());
         // Расчет:
@@ -133,14 +133,14 @@ class BusinessMetricsTest {
                 OrderStatus.CANCELLED)
         );
 
-        Optional<Double> totalIncome = BusinessMetrics.getTotalIncomeForDeliveredOrders(onlyCancelled);
+        Optional<Double> totalIncome = OrderAnalysisService.getTotalIncomeForDeliveredOrders(onlyCancelled);
 
         assertTrue(totalIncome.isEmpty());
     }
 
     @Test
     void testGetMostPopularProductBySales() {
-        Optional<String> popularProduct = BusinessMetrics.getMostPopularProductBySales(orders);
+        Optional<String> popularProduct = OrderAnalysisService.getMostPopularProductBySales(orders);
 
         assertTrue(popularProduct.isPresent());
         // Футболка: order2(5) + order5(5) + order9(5) = 15 штук
@@ -157,14 +157,14 @@ class BusinessMetricsTest {
                 OrderStatus.CANCELLED)
         );
 
-        Optional<String> popularProduct = BusinessMetrics.getMostPopularProductBySales(onlyCancelled);
+        Optional<String> popularProduct = OrderAnalysisService.getMostPopularProductBySales(onlyCancelled);
 
         assertTrue(popularProduct.isEmpty());
     }
 
     @Test
     void testGetAverageCheckForDeliveredOrders() {
-        OptionalDouble averageCheck = BusinessMetrics.getAverageCheckForDeliveredOrders(orders);
+        OptionalDouble averageCheck = OrderAnalysisService.getAverageCheckForDeliveredOrders(orders);
 
         assertTrue(averageCheck.isPresent());
         // Доставленные заказы:
@@ -181,14 +181,14 @@ class BusinessMetricsTest {
                 OrderStatus.PROCESSING)
         );
 
-        OptionalDouble averageCheck = BusinessMetrics.getAverageCheckForDeliveredOrders(noDelivered);
+        OptionalDouble averageCheck = OrderAnalysisService.getAverageCheckForDeliveredOrders(noDelivered);
 
         assertTrue(averageCheck.isEmpty());
     }
 
     @Test
     void testGetCustomersWithMoreThan5Orders() {
-        List<Customer> customers = BusinessMetrics.getCustomersWithMoreThan5Orders(orders);
+        List<Customer> customers = OrderAnalysisService.getCustomersWithMoreThan5Orders(orders);
 
         assertEquals(1, customers.size());
         assertEquals("Иван Иванов", customers.get(0).getName());
@@ -203,7 +203,7 @@ class BusinessMetricsTest {
                 OrderStatus.DELIVERED)
         );
 
-        List<Customer> customers = BusinessMetrics.getCustomersWithMoreThan5Orders(fewOrders);
+        List<Customer> customers = OrderAnalysisService.getCustomersWithMoreThan5Orders(fewOrders);
 
         assertNotNull(customers);
         assertTrue(customers.isEmpty());
@@ -211,7 +211,7 @@ class BusinessMetricsTest {
 
     @Test
     void testGetCustomersWithMoreThan5OrdersWithNull() {
-        List<Customer> customers = BusinessMetrics.getCustomersWithMoreThan5Orders(null);
+        List<Customer> customers = OrderAnalysisService.getCustomersWithMoreThan5Orders(null);
 
         assertNotNull(customers);
         assertTrue(customers.isEmpty());
@@ -238,7 +238,7 @@ class BusinessMetricsTest {
                 OrderStatus.DELIVERED)
         );
 
-        List<Customer> customers = BusinessMetrics.getCustomersWithMoreThan5Orders(exactly5Orders);
+        List<Customer> customers = OrderAnalysisService.getCustomersWithMoreThan5Orders(exactly5Orders);
 
         assertTrue(customers.isEmpty()); // ровно 5 заказов - не попадает в результат
     }

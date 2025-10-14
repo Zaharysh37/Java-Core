@@ -1,4 +1,4 @@
-package com.innowise.salesAndCustomerAnalytics.entities;
+package com.innowise.orderanalysis.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

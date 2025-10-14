@@ -1,9 +1,9 @@
-package com.innowise.salesAndCustomerAnalytics.analytics;
+package com.innowise.orderanalysis.service;
 
-import com.innowise.salesAndCustomerAnalytics.entities.Customer;
-import com.innowise.salesAndCustomerAnalytics.entities.Order;
-import com.innowise.salesAndCustomerAnalytics.entities.OrderItem;
-import com.innowise.salesAndCustomerAnalytics.entities.OrderStatus;
+import com.innowise.orderanalysis.entity.Customer;
+import com.innowise.orderanalysis.entity.Order;
+import com.innowise.orderanalysis.entity.OrderItem;
+import com.innowise.orderanalysis.entity.OrderStatus;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +13,8 @@ import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
-public class BusinessMetrics {
-    private BusinessMetrics() {}
+public class OrderAnalysisService {
+    private OrderAnalysisService() {}
 
     public static List<String> getUniqueCities(List<Order> orders) {
         if (orders == null || orders.isEmpty()) {

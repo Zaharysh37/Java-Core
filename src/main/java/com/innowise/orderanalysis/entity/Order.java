@@ -1,4 +1,4 @@
-package com.innowise.salesAndCustomerAnalytics.entities;
+package com.innowise.orderanalysis.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
