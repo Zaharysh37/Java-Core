@@ -1,6 +1,5 @@
-package com.innowise.skynet.entities;
+package com.innowise.skynet.entity;
 
-import com.innowise.skynet.enums.PartType;
 import java.util.Map;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.ConcurrentHashMap;

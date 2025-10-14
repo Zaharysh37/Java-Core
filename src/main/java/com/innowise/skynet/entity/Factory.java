@@ -1,6 +1,5 @@
-package com.innowise.skynet.entities;
+package com.innowise.skynet.entity;
 
-import com.innowise.skynet.enums.PartType;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;

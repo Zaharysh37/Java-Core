@@ -1,7 +1,7 @@
 package com.innowise.skynet;
 
-import com.innowise.skynet.entities.Faction;
-import com.innowise.skynet.entities.Factory;
+import com.innowise.skynet.entity.Faction;
+import com.innowise.skynet.entity.Factory;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
