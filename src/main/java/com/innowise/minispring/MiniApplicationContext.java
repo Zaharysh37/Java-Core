@@ -1,7 +1,10 @@
 package com.innowise.minispring;
 
+import com.innowise.minispring.ann.Autowired;
+import com.innowise.minispring.ann.Component;
+import com.innowise.minispring.ann.InitializingBean;
+import com.innowise.minispring.ann.Scope;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,28 +13,33 @@ public class MiniApplicationContext {
     private final Map<Class<?>, Object> singletons = new HashMap<>();
     private final Map<Class<?>, String> scopes = new HashMap<>();
 
-    public MiniApplicationContext()
-        throws Exception {
-        List<Class<?>> candidates = ClassScanner.getClasses();
+    public MiniApplicationContext(String basePackage) {
+        try {
+            List<Class<?>> candidates = ClassScanner.scanPackage(basePackage);
 
-        for (Class<?> clazz : candidates) {
-            if (clazz.isAnnotationPresent(Component.class)) {
-                Scope scopeAnn = clazz.getAnnotation(Scope.class);
-                String scope = (scopeAnn == null) ? "singleton" : scopeAnn.value();
-                scopes.put(clazz, scope);
+            for (Class<?> clazz : candidates) {
+                if (clazz.isAnnotationPresent(Component.class)) {
+                    Scope scopeAnn = clazz.getAnnotation(Scope.class);
+                    String scope = (scopeAnn == null ? "singleton" : scopeAnn.value());
+                    scopes.put(clazz, scope);
 
-                if (scope.equals("singleton")) {
-                    Object instance = clazz.getDeclaredConstructor().newInstance();
-                    singletons.put(clazz, instance);
+                    if (!"prototype".equals(scope)) {
+                        Object instance = clazz.getDeclaredConstructor().newInstance();
+                        singletons.put(clazz, instance);
+                    }
+                }
+            }
+
+            for (Object instance : singletons.values()) {
+                injectDependencies(instance);
+                if (instance instanceof InitializingBean) {
+                    ((InitializingBean) instance).afterPropertiesSet();
                 }
             }
         }
-
-        for (Object instance : singletons.values()) {
-            injectDependencies(instance);
-            if (instance instanceof InitializingBean) {
-                ((InitializingBean) instance).afterPropertiesSet();
-            }
+        catch (Exception e) {
+            System.out.println("Error instantiating MiniApplicationContext: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -44,8 +52,7 @@ public class MiniApplicationContext {
         }
     }
 
-    public <T> T getBean(Class<T> type)
-        throws Exception {
+    public <T> T getBean(Class<T> type) throws Exception {
         String scope = scopes.getOrDefault(type, "singleton");
         if (scope.equals("singleton")) {
             return (T) singletons.get(type);

@@ -1,11 +1,11 @@
-package com.innowise.minispring.test;
+package com.innowise.example.service;
 
-import com.innowise.minispring.Component;
-import com.innowise.minispring.InitializingBean;
-import com.innowise.minispring.Scope;
+import com.innowise.minispring.ann.Component;
+import com.innowise.minispring.ann.InitializingBean;
+import com.innowise.minispring.ann.Scope;
 
 @Component
-//@Scope("prototype")
+@Scope("prototype")
 public class UserRepository implements InitializingBean {
 
     @Override
@@ -13,7 +13,7 @@ public class UserRepository implements InitializingBean {
         System.out.println("Initializing success!");
     }
 
-    public void getVoice() {
+    public void getStatus() {
         System.out.println("Full Success!");
     }
 }
