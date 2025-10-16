@@ -9,7 +9,9 @@ public class Factory {
 
     public void produceParts() {
         int partsToProduce = 1 + (int) (Math.random() * 10);
-        IntStream.range(0, partsToProduce).forEach(i -> storage.add(PartType.getRandomPart()));
+        IntStream.range(0, partsToProduce).forEach(i -> storage.add(
+            PartType.values()[(int)(Math.random()*PartType.values().length)]
+        ));
         System.out.println("FACTORY: Produced " + partsToProduce + " parts. On stock: " + storage.size());
     }
 
