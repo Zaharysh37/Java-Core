@@ -1,7 +1,7 @@
 package com.innowise.example.service;
 
-import com.innowise.minispring.ann.Autowired;
-import com.innowise.minispring.ann.Component;
+import com.innowise.minispring.annotation.Autowired;
+import com.innowise.minispring.annotation.Component;
 
 @Component
 public class UserService {

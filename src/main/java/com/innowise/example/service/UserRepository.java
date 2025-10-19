@@ -1,8 +1,8 @@
 package com.innowise.example.service;
 
-import com.innowise.minispring.ann.Component;
-import com.innowise.minispring.ann.InitializingBean;
-import com.innowise.minispring.ann.Scope;
+import com.innowise.minispring.annotation.Component;
+import com.innowise.minispring.annotation.InitializingBean;
+import com.innowise.minispring.annotation.Scope;
 
 @Component
 @Scope("prototype")

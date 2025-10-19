@@ -7,6 +7,7 @@ import java.util.List;
 
 public class ClassScanner {
 
+    private static final int CLASS_FILE_EXTENSION_LENGTH = 6;
     public static List<Class<?>> scanPackage(String basePackage) throws Exception {
         List<Class<?>> classes = new LinkedList<>(); // Локальный список
         scanPackageRecursive(basePackage, classes);
@@ -38,7 +39,12 @@ public class ClassScanner {
 
     private static void processClassFile(String basePackage, File file, List<Class<?>> classes) {
         try {
-            String className = basePackage + "." + file.getName().substring(0, file.getName().length() - 6);
+            String className =
+                basePackage + "."
+                + file.getName().substring(
+                    0,
+                    file.getName().length() - CLASS_FILE_EXTENSION_LENGTH
+            );
             Class<?> clazz = Class.forName(className);
             classes.add(clazz);
         } catch (ClassNotFoundException e) {

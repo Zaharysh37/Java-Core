@@ -1,9 +1,9 @@
 package com.innowise.minispring;
 
-import com.innowise.minispring.ann.Autowired;
-import com.innowise.minispring.ann.Component;
-import com.innowise.minispring.ann.InitializingBean;
-import com.innowise.minispring.ann.Scope;
+import com.innowise.minispring.annotation.Autowired;
+import com.innowise.minispring.annotation.Component;
+import com.innowise.minispring.annotation.InitializingBean;
+import com.innowise.minispring.annotation.Scope;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
